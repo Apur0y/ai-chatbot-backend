@@ -13,6 +13,7 @@ const groq = new Groq({ apiKey: process.env.GROQ_API_KEY});
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello, World!');
 });
+//kljgl
 
 app.post("/chat",async(req:Request,res:Response)=>{
     console.log("Chat is hited")
