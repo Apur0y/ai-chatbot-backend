@@ -1,12 +1,13 @@
 import express, { Request, Response } from 'express';
 import Groq from 'groq-sdk';
+import * as dotenv from 'dotenv';
 
 const app = express();
-
+dotenv.config(); 
 // Middleware to parse JSON request bodies
 app.use(express.json());
 
-const groq = new Groq({ apiKey: "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"});
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY});
  
 // Define a route
 app.get('/', (req: Request, res: Response) => {
@@ -28,9 +29,9 @@ app.post("/chat",async(req:Request,res:Response)=>{
       messages: messages2,
       model: "llama3-8b-8192",
     })
-    .then((chatCompletion) => {
-      console.log(chatCompletion.choices[0]?.message?.content || "");
-    });
+    // .then((chatCompletion) => {
+    //   console.log(chatCompletion.choices[0]?.message?.content || "");
+    // });
 
     console.log("Responce is here",completion);
     res.json(completion)
